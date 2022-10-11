@@ -10,12 +10,18 @@ class FileStorage():
         return self.__objects
 
     def new(self, obj):
-        self.__objects[f"{__class__.__name__}.id"] = obj
+        FileStorage.__objects[f"{__class__.__name__}.id"] = obj
 
     def save(self):
-        with open(self.__file_path, "w") as f:
-            json.dump(f)
+        try:
+            with open(FileStorage.__file_path, "w") as f:
+                f.write(json.dumps(FileStorage.__objects))
+        except:
+            pass
 
     def reload(self):
-        with open(self.__file_path, "w") as f:
-            json.load(f)
+        try:
+            with open(self.__file_path, "r") as f:
+                json.loads(f)
+        except:
+            pass

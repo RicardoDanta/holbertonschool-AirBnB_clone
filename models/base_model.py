@@ -24,8 +24,8 @@ class BaseModel:
         return f'[{self.__class__.__name__}] ({self.id}) {self.__dict__})'
     
     def save(self):
+        storage.save()
         self.updated_at = datetime.now()
-        storage.save(self)
 
     def to_dict(self):
         new_dict = {}
