@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Class"""
 
 from models.base_models import BaseModel
 
