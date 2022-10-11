@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from models.base_model import BaseModel
 import json
 
 
@@ -11,7 +13,7 @@ class FileStorage():
         return self.__objects
 
     def new(self, obj):
-        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
+        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj.__dict__
 
     def save(self):
         with open(self.__file_path, "w") as f:
@@ -20,6 +22,6 @@ class FileStorage():
     def reload(self):
         try:
             with open(self.__file_path, "r") as f:
-                self.__objects = dict(json.load(f))
+                self.__objects = json.load(f)
         except:
             pass
