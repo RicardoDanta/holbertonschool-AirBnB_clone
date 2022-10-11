@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import os
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from models.base_model import BaseModel
@@ -20,9 +21,6 @@ class FileStorage():
             f.write(json.dumps(self.__objects, default=str))
 
     def reload(self):
-        try:
+        if os.path.exists(self.__file_path):
             with open(self.__file_path, "r") as f:
                 self.__objects = json.load(f)
-                self.__objects = BaseModel(self.__objects)
-        except:
-            pass
