@@ -2,7 +2,6 @@
 """Classes"""
 
 from models.base_models import BaseModel
-import json
 
 
 class State(BaseModel):
