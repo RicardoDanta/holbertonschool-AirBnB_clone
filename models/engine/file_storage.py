@@ -10,14 +10,11 @@ class FileStorage():
         return self.__objects
 
     def new(self, obj):
-        self.__objects[f"{__class__.__name__}.id"] = obj
+        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
 
     def save(self):
-        try:
-            with open(self.__file_path, "w") as f:
-                f.write(json.dumps(self.__objects, default=str))
-        except:
-            pass
+        with open(self.__file_path, "w") as f:
+            f.write(json.dumps(self.__objects, default=str))
 
     def reload(self):
         try:
