@@ -15,7 +15,7 @@ class FileStorage():
     def save(self):
         try:
             with open(self.__file_path, "w") as f:
-                f.write(json.dumps(self.__objects))
+                f.write(json.dumps(self.__objects, default=str))
         except:
             pass
 
