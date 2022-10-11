@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from models.base_model import BaseModel
 import json
 
 
@@ -21,5 +23,6 @@ class FileStorage():
         try:
             with open(self.__file_path, "r") as f:
                 self.__objects = json.load(f)
+                self.__objects = BaseModel(self.__objects)
         except:
             pass
