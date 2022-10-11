@@ -11,7 +11,7 @@ class FileStorage():
         return self.__objects
 
     def new(self, obj):
-        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
+        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj.__dict__
 
     def save(self):
         with open(self.__file_path, "w") as f:
