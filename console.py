@@ -1,8 +1,15 @@
 #!/usr/bin/python3
+"""Console 0.0.1"""
 
 import cmd
 import sys
-from models import FileStorage
+from models import storage
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 from models.base_model import BaseModel
 
 
@@ -14,9 +21,9 @@ class HBNBCommand(cmd.Cmd):
         """Print Anything"""
         pass
 
-    def do_help(self, args):
+    def do_help(self, arg):
         """Help"""
-        return True
+        super().do_help(arg)
 
     def do_EOF(self, args):
         """End of File"""
