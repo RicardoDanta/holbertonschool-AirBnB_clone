@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Create a class State that inherits from BaseModel"""
+"""Classes"""
 
 from models.base_model import BaseModel
 
