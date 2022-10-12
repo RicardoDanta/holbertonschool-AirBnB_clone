@@ -20,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
     """HBNB"""
     prompt = "(hbnb)"
 
-    def EmptyLine(self):
+    def emptyline(self):
         """Print Anything"""
         pass
 
