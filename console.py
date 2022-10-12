@@ -1,5 +1,8 @@
 #!/usr/bin/python3
+
+
 """Console 0.0.1"""
+
 
 import cmd
 import sys

@@ -1,7 +1,10 @@
 #!/usr/bin/python3
+
+
 """Classes"""
 
-from models_base_model import BaseModel
+
+from models.base_model import BaseModel
 
 
 class City(BaseModel):
