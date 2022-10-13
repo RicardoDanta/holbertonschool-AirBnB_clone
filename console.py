@@ -13,6 +13,14 @@ from models.place import Place
 from models.review import Review
 from models.base_model import BaseModel
 
+dictionary = {"Amenity": Amenity,
+              "BaseModel": BaseModel,
+              "City": City,
+              "Place": Place,
+              "Review": Review,
+              "State": State,
+              "User": User}
+
 
 class HBNBCommand(cmd.Cmd):
     """HBNB"""
@@ -33,6 +41,12 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, args):
         """Quit"""
         return True
+
+    def do_create(self, args):
+        """Create"""
+        argmts = args.split(" ")
+        if argmts[0] == "":
+            print("** class name missing **")
 
 
 if __name__ == '__main__':
