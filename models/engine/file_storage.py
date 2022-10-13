@@ -12,6 +12,7 @@ if TYPE_CHECKING:
 from models.base_model import BaseModel
 import json
 
+
 class FileStorage():
     __file_path = "file.json"
     __objects = {}

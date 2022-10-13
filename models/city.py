@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-
-
-"""Classes"""
+"""Write a class City that inherits from BaseModel"""
 
 
 from models.base_model import BaseModel

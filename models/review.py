@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-
-
 """Create a class Review that inherits from BaseModel"""
 
 
