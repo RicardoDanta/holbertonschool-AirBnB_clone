@@ -13,7 +13,6 @@ from models.review import Review
 from models.base_model import BaseModel
 
 
-
 class HBNBCommand(cmd.Cmd):
     """HBNB"""
     prompt = "(hbnb)"
@@ -40,11 +39,12 @@ class HBNBCommand(cmd.Cmd):
             new_ins = eval(my_args[0])()
             new_ins.save()
             print(new_ins.id)
-        except:
+        except Exception:
             print("** class doesn't exist **")
 
     def do_show(self, args):
-        """Prints the string representation of an instance based on the class name and id"""
+        """Prints the string representation of
+        an instance based on the class name and id"""
         my_args = args.split()
         if len(my_args) == 0:
             print("** class name missing **")
@@ -62,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
                 return
         print("** class doesn't exist **")
-        
+
     def do_destroy(self, args):
         """Deletes an instance based on the class name and id"""
         my_args = args.split()
@@ -86,7 +86,8 @@ class HBNBCommand(cmd.Cmd):
         print("** class doesn't exist **")
 
     def do_all(self, arg):
-        """Prints all string representation of all instances based or not on the class name"""
+        """Prints all string representation of
+        all instances based or not on the class name"""
         my_arg = arg.split()
         my_list = []
         my_dict = storage.all()
@@ -102,7 +103,6 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
             else:
                 print(my_list)
-
 
     def do_update(self, args):
         my_args = args.split()
