@@ -107,7 +107,10 @@ class HBNBCommand(cmd.Cmd):
                     my_list.append(str(value))
             if len(my_list) == 0:
                 print("** class doesn't exist **")
-    
+            else:
+                print(my_list)
+
+
     def do_update(self, args):
         my_args = args.split()
         if len(my_args) == 0:
