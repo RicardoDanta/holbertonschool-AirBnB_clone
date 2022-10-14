@@ -16,7 +16,7 @@ class TestBaseModel(unittest.TestCase):
     def test_to_dict(self):
         basemodel = BaseModel()
         basemodel.to_dict()
-        self.assertNotEqual(basemodel.created_at, basemodel.updated_at, basemodel.__class__)
+        self.assertNotEqual(basemodel.created_at, basemodel.update_at, self.__class__)
 
 
 if __name__ == '__main__':
