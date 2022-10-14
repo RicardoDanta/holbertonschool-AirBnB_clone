@@ -76,12 +76,18 @@ class HBNBCommand(cmd.Cmd):
         if len(my_args) == 0:
             print("** class name missing **")
             return
+        if len(my_args) == 1:
+            print("** instance id missing **")
+            return
+        if len(my_args) == 2:
+            print("** attribute name missing **")
+            return
+        if len(my_args) == 3:
+            print("** value missing **")
+            return
         my_dict = storage.all()
         for key, value in my_dict.items():
             if my_args[0] == value.__class__.__name__:
-                if len(my_args) == 1:
-                    print("** instance id missing **")
-                    return
                 if my_args[1] == value.id:
                     all_objects = storage.all()
                     all_objects.pop(key)
@@ -91,6 +97,41 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
         print("** no instance found **")
+
+    def do_all(self, arg):
+        """Prints all string representation of all instances based or not on the class name"""
+        my_arg = arg.split()
+        my_list = []
+        my_dict = storage.all()
+        if len(arg) == 0:
+            for key, value in my_dict.items():
+                my_list.append(str(value))
+            print(my_list)
+        else:
+            for key, value in my_dict.items():
+                if my_arg[0] == value.__class__.__name__:
+                    my_list.append(str(value))
+            if len(my_list) == 0:
+                print("** class doesn't exist **")
+    
+    def do_update(self, args):
+        my_args = args.split()
+        if len(my_args) == 0:
+            print("** class name missing **")
+            return
+        if len(my_args) == 1:
+            print("** instance id missing **")
+            return
+        my_dict = storage.all()
+        for key, value in my_dict.items():
+            if my_args[0] == value.__class__.__name__:
+                if my_args[1] == value.id:
+                    print(value)
+            else:
+                print("** class doesn't exist **")
+                return
+        print("** no instance found **")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
