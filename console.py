@@ -76,18 +76,12 @@ class HBNBCommand(cmd.Cmd):
         if len(my_args) == 0:
             print("** class name missing **")
             return
-        if len(my_args) == 1:
-            print("** instance id missing **")
-            return
-        if len(my_args) == 2:
-            print("** attribute name missing **")
-            return
-        if len(my_args) == 3:
-            print("** value missing **")
-            return
         my_dict = storage.all()
         for key, value in my_dict.items():
             if my_args[0] == value.__class__.__name__:
+                if len(my_args) == 1:
+                    print("** instance id missing **")
+                    return
                 if my_args[1] == value.id:
                     all_objects = storage.all()
                     all_objects.pop(key)
@@ -119,14 +113,23 @@ class HBNBCommand(cmd.Cmd):
         if len(my_args) == 0:
             print("** class name missing **")
             return
-        if len(my_args) == 1:
-            print("** instance id missing **")
-            return
         my_dict = storage.all()
         for key, value in my_dict.items():
             if my_args[0] == value.__class__.__name__:
+                if len(my_args) == 1:
+                    print("** instance id missing **")
+                    return
                 if my_args[1] == value.id:
-                    print(value)
+                    if len(my_args) == 2:
+                        print("** attribute name missing **")
+                        return
+                    if len(my_args) == 3:
+                        print("** value missing **")
+                        return
+                    all_objects = storage.all()
+                    setattr(all_objects[key], my_args[2], my_args[3])
+                    storage.save()
+                    return
             else:
                 print("** class doesn't exist **")
                 return
