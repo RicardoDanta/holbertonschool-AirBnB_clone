@@ -10,7 +10,6 @@ from models.user import User
 import json
 
 
-
 class FileStorage():
     """
     Serializes instances to a JSON file and deserializes JSON file to instances
@@ -40,7 +39,8 @@ class FileStorage():
 
     def reload(self):
         """
-        It opens the file, reads it, and then converts the JSON string into a Python object
+        It opens the file, reads it, and then converts
+        the JSON string into a Python object
         """
         if os.path.exists(self.__file_path):
             with open(self.__file_path, "r") as f:
