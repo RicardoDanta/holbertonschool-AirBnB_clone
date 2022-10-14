@@ -12,13 +12,6 @@ from models.place import Place
 from models.review import Review
 from models.base_model import BaseModel
 
-dictionary = {"Amenity": Amenity,
-              "BaseModel": BaseModel,
-              "City": City,
-              "Place": Place,
-              "Review": Review,
-              "State": State,
-              "User": User}
 
 
 class HBNBCommand(cmd.Cmd):
@@ -66,9 +59,9 @@ class HBNBCommand(cmd.Cmd):
                     print(value)
                     return
             else:
-                print("** class doesn't exist **")
+                print("** no instance found **")
                 return
-        print("** no instance found **")
+        print("** class doesn't exist **")
         
     def do_destroy(self, args):
         """Deletes an instance based on the class name and id"""
@@ -88,9 +81,9 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
                     return
             else:
-                print("** class doesn't exist **")
+                print("** no instance found **")
                 return
-        print("** no instance found **")
+        print("** class doesn't exist **")
 
     def do_all(self, arg):
         """Prints all string representation of all instances based or not on the class name"""
@@ -134,9 +127,9 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
                     return
             else:
-                print("** class doesn't exist **")
+                print("** no instance found **")
                 return
-        print("** no instance found **")
+        print("** class doesn't exist **")
 
 
 if __name__ == '__main__':
