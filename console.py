@@ -12,6 +12,14 @@ from models.place import Place
 from models.review import Review
 from models.base_model import BaseModel
 
+dictionary = {"Amenity": Amenity,
+              "BaseModel": BaseModel,
+              "City": City,
+              "Place": Place,
+              "Review": Review,
+              "State": State,
+              "User": User}
+
 
 class HBNBCommand(cmd.Cmd):
     """HBNB"""
@@ -58,9 +66,10 @@ class HBNBCommand(cmd.Cmd):
                 if my_args[1] == value.id:
                     print(value)
                     return
-                else:
-                    print("** no instance found **")
-                    return
+        for k in dictionary.keys():
+            if my_args[0] == k:
+                print("** no instance found **")
+                return
         print("** class doesn't exist **")
 
     def do_destroy(self, args):
@@ -80,9 +89,10 @@ class HBNBCommand(cmd.Cmd):
                     all_objects.pop(key)
                     storage.save()
                     return
-                else:
-                    print("** no instance found **")
-                    return
+        for k in dictionary.keys():
+            if my_args[0] == k:
+                print("** no instance found **")
+                return
         print("** class doesn't exist **")
 
     def do_all(self, arg):
@@ -126,9 +136,10 @@ class HBNBCommand(cmd.Cmd):
                     setattr(all_objects[key], my_args[2], my_args[3])
                     storage.save()
                     return
-                else:
-                    print("** no instance found **")
-                    return
+        for k in dictionary.keys():
+            if my_args[0] == k:
+                print("** no instance found **")
+                return
         print("** class doesn't exist **")
 
 
