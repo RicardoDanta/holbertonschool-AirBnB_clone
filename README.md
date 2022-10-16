@@ -1,6 +1,6 @@
 ## The AirBnB Project
 
-![Image text](https://github.com/RicardoDanta/Images_for_projects/blob/main/65f4a1dd9c51265f49d0.png)
+![Image text](https://github.com/RicardoDanta/Images_for_projects/blob/main/AirBnB-Cover.jpg)
 
 ### Introduction
 
