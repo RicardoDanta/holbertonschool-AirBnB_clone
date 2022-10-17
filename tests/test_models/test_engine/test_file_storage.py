@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" testing fileStorage """
+"""Test FileStorage"""
 
 import models
 from models.base_model import BaseModel
@@ -29,10 +29,10 @@ class test_fileStorage(unittest.TestCase):
     def test_all(self):
         """Check All"""
         base = BaseModel()
-        srg = storage.all()
-        self.assertIsNotNone(srg)
-        self.assertEqual(srg, storage.all())
-        self.assertIs(srg, storage.all())
+        storage1 = storage.all()
+        self.assertIsNotNone(storage1)
+        self.assertEqual(storage1, storage.all())
+        self.assertIs(storage1, storage.all())
 
     def test_reload(self):
         """Check Reload"""
@@ -65,6 +65,15 @@ class test_fileStorage(unittest.TestCase):
             self.assertIsNotNone(f.read())
         self.assertIsNotNone(
             storage.all()[basemodel.__class__.__name__ + "." + basemodelid])
+
+    def test_docstring(self):
+        """Checking the Docstring"""
+        filestorage = FileStorage()
+        self.assertTrue(filestorage.__doc__)
+        self.assertIsNotNone(filestorage.all)
+        self.assertIsNotNone(filestorage.new)
+        self.assertIsNotNone(filestorage.save)
+        self.assertIsNotNone(filestorage.reload)
 
 
 if __name__ == '__main__':
