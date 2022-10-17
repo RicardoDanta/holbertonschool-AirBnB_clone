@@ -63,7 +63,7 @@ To execute those commands you have to type the command and the name of the class
 
 For example:
 
-$ (hbnb) Create Amenity
+$ (hbnb) Create Amenity  
 3f19d088-5269-430d-b128-f3efe8bf406f
 
 Authors of the project:
