@@ -17,7 +17,7 @@ class test_fileStorage(unittest.TestCase):
         self.assertIsInstance(obj, FileStorage)
 
     def test_new(self):
-        """Checking new method"""
+        """Checking New"""
         obj = FileStorage()
         base = BaseModel()
         base.name = "Holberton"
@@ -27,7 +27,7 @@ class test_fileStorage(unittest.TestCase):
             storage.all()[base.__class__.__name__ + "." + bmid])
 
     def test_all(self):
-        """Checking all method"""
+        """Check All"""
         base = BaseModel()
         srg = storage.all()
         self.assertIsNotNone(srg)
@@ -35,7 +35,7 @@ class test_fileStorage(unittest.TestCase):
         self.assertIs(srg, storage.all())
 
     def test_reload(self):
-        """Checking reload method"""
+        """Check Reload"""
         obj = FileStorage()
         obj.reload()
         self.assertIsNotNone(obj.all())
@@ -52,6 +52,19 @@ class test_fileStorage(unittest.TestCase):
         storage.reload()
         self.assertIsNotNone(
             storage.all()[base.__class__.__name__ + "." + bmid])
+
+    def test_save(self):
+        """Check Save"""
+        filestorage = FileStorage()
+        basemodel = BaseModel()
+        basemodel.name = "AirBnB"
+        basemodelid = basemodel.id
+        storage.new(basemodel)
+        storage.save()
+        with open("file.json", "r") as f:
+            self.assertIsNotNone(f.read())
+        self.assertIsNotNone(
+            storage.all()[basemodel.__class__.__name__ + "." + basemodelid])
 
 
 if __name__ == '__main__':
