@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Test Place"""
+
 import unittest
 import pep8
 from models.place import Place
@@ -26,10 +27,6 @@ class test_place(unittest.TestCase):
         self.assertEqual(Place.latitude, 0.0)
         self.assertEqual(Place.longitude, 0.0)
         self.assertEqual(Place.amenity_ids, [])
-
-    """def check_functions(self):
-        check
-        self.assertIsNotNone(Place.__doc__)"""
 
     def test_instance(self):
         """test instances"""

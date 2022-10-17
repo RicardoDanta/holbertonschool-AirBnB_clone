@@ -15,21 +15,10 @@ class TestState(unittest.TestCase):
         """Checks if state is a subclass of BaseModel"""
         self.assertTrue(issubclass(State, BaseModel))
 
-    def test_instance(self):
-        """Checks if an instance of State is created"""
-        state = State()
-        state1 = State()
-        self.assertNotEqual(state.id, state1.id)
-        self.assertNotEqual(state.created_at, state1.created_at)
-        self.assertNotEqual(state.updated_at, state1.updated_at)
-        self.assertIn(state, storage.all().values())
-        self.assertIn(st1ate, storage.all().values())
-        self.assertEqual(State.name, "")
-
-    def test_attr(self):
+    def test_state(self):
         """Checks if the attributes are correct"""
-        my_state = State()
-        self.assertEqual(my_state.name, "")
+        state = State()
+        self.assertEqual(state.name, "")
 
 
 if __name__ == '__main__':
