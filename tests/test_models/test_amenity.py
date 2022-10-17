@@ -4,6 +4,7 @@
 import unittest
 from models.base_model import BaseModel
 from models.amenity import Amenity
+import pep8
 
 
 class TestAmenity(unittest.TestCase):
@@ -19,6 +20,11 @@ class TestAmenity(unittest.TestCase):
         self.assertEqual(amenity.name, "")
         self.assertTrue(isinstance(amenity, BaseModel))
 
+    def test_pycodestyle(self):
+        """Check Pycodestyle"""
+        style = pep8.StyleGuide(quit=True)
+        pycodestyle = style.check_files(['models/amenity.py'])
+        self.assertEqual(pycodestyle.total_errors, 0, "fix pep8")
 
 if __name__ == '__main__':
     unittest.main()
