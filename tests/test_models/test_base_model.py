@@ -4,6 +4,7 @@
 import unittest
 import models
 from models.base_model import BaseModel
+from datetime import datetime
 
 
 class TestBaseModel(unittest.TestCase):
@@ -32,6 +33,24 @@ class TestBaseModel(unittest.TestCase):
         """Checks __str__"""
         b = BaseModel()
         self.assertEqual(f"[{type(b).__name__}] ({b.id}) {b.__dict__}", str(b))
+
+    def test_id(self):
+        """Check the ID"""
+        basemodel = BaseModel()
+        base_model = BaseModel()
+        self.assertIsInstance(basemodel.id, str)
+        self.assertNotEqual(basemodel.id, base_model.id)
+        self.assertFalse(basemodel.id == base_model.id)
+
+    def test_doc(self):
+        """Check docstring"""
+        self.assertIsNotNone(BaseModel.__doc__)
+
+    def test_datetime(self):
+        """ checking datetime """
+        basemodel = BaseModel()
+        self.assertIsInstance(basemodel.created_at, datetime)
+        self.assertIsInstance(basemodel.updated_at, datetime)
 
 
 if __name__ == '__main__':
