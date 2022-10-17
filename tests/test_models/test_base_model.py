@@ -28,6 +28,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn("updated_at", basemodel.to_dict())
         self.assertIn("__class__", basemodel.to_dict())
 
+    def test_string_(self):
+        """Checks __str__"""
+        b = BaseModel()
+        self.assertEqual(f"[{type(b).__name__}] ({b.id}) {b.__dict__}", str(b))
+
 
 if __name__ == '__main__':
     unittest.main()
