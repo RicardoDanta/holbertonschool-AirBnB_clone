@@ -46,7 +46,7 @@ The console will be a tool to validate this storage engine.
 
 ## Execute owr console
 
-You can execute ir typing:  
+You can execute it typing:  
 $ ./console.py
 
 ## Which commands do we use?
