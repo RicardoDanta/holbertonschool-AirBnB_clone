@@ -1,14 +1,13 @@
 #!/usr/bin/python3
 """ Testing BaseModel """
 
+import unittest
+import os
 from time import sleep
 import models
-import unittest
 from models.base_model import BaseModel
 from datetime import datetime
 from models import storage
-import os
-
 from models.engine.file_storage import FileStorage
 
 
@@ -16,134 +15,132 @@ class test_basemodel(unittest.TestCase):
     """ Test BaseModel Class """
 
     def test_basemodel_save(self):
-        """ checking BaseModel save """
-        bm = BaseModel()
-        bm.save()
-        sleep(0.1)
-        bm.save()
-        self.assertNotEqual(bm.created_at, bm.updated_at)
+        """Checking Save"""
+        basemodel = BaseModel()
+        basemodel.save()
+        self.assertNotEqual(basemodel.created_at, basemodel.updated_at)
 
     def test_basemodel_to_dict(self):
-        """ checking BaseModel to_dict """
-        bm = BaseModel()
-        bm_dict = bm.to_dict()
-        self.assertEqual(bm_dict["__class__"], "BaseModel")
-        self.assertEqual(type(bm_dict["created_at"]), str)
-        self.assertEqual(type(bm_dict["updated_at"]), str)
-        self.assertEqual(bm_dict["id"], bm.id)
-        self.assertIn("id", bm.to_dict())
-        self.assertIn("created_at", bm.to_dict())
-        self.assertIn("updated_at", bm.to_dict())
-        self.assertIn("__class__", bm.to_dict())
+        """Check BaseModel to_dict"""
+        basemodel = BaseModel()
+        basemodel_dict = basemodel.to_dict()
+        self.assertEqual(basemodel_dict["__class__"], "BaseModel")
+        self.assertEqual(type(basemodel_dict["created_at"]), str)
+        self.assertEqual(type(basemodel_dict["updated_at"]), str)
+        self.assertEqual(basemodel_dict["id"], basemodel.id)
+        self.assertIn("id", basemodel.to_dict())
+        self.assertIn("created_at", basemodel.to_dict())
+        self.assertIn("updated_at", basemodel.to_dict())
+        self.assertIn("__class__", basemodel.to_dict())
 
     def test_basemodel_to_dict_with_kwargs(self):
-        """ checking BaseModel to_dict with kwargs """
+        """Check BaseModel to_dict with kwargs"""
         dict = {"name": "Holberton", "age": 89, "id": "0"}
-        bm = BaseModel(**dict)
-        self.assertEqual(bm.id, "0")
-        self.assertEqual(bm.name, "Holberton")
-        self.assertEqual(bm.age, 89)
-        self.assertEqual(bm.__dict__, dict)
+        basemodel = BaseModel(**dict)
+        self.assertEqual(basemodel.id, "0")
+        self.assertEqual(basemodel.name, "Holberton")
+        self.assertEqual(basemodel.age, 89)
+        self.assertEqual(basemodel.__dict__, dict)
 
     def test_doc(self):
-        """ checking BaseModel docstring """
+        """Checking BaseModel docstring"""
         self.assertIsNotNone(BaseModel.__doc__)
 
     def test_datetime(self):
-        """ checking datetime """
-        bm = BaseModel()
-        self.assertIsInstance(bm.created_at, datetime)
-        self.assertIsInstance(bm.updated_at, datetime)
+        """Check Datetime"""
+        basemodel = BaseModel()
+        self.assertIsInstance(basemodel.created_at, datetime)
+        self.assertIsInstance(basemodel.updated_at, datetime)
 
     def test_id(self):
-        """ checking id """
-        bm = BaseModel()
-        bm2 = BaseModel()
-        self.assertIsInstance(bm.id, str)
-        self.assertNotEqual(bm.id, bm2.id)
-        self.assertFalse(bm.id == bm2.id)
+        """Check the id"""
+        basemodel = BaseModel()
+        basemodel2 = BaseModel()
+        self.assertIsInstance(basemodel.id, str)
+        self.assertNotEqual(basemodel.id, basemodel2.id)
+        self.assertFalse(basemodel.id == basemodel2.id)
 
     def test_inst(self):
-        """ checks if the instances of BaseModel are correctly created"""
-        bm = BaseModel()
-        bm1 = BaseModel()
-        self.assertNotEqual(bm.id, bm1.id)
-        self.assertNotEqual(bm.created_at, bm1.created_at)
-        self.assertNotEqual(bm.updated_at, bm1.updated_at)
-        self.assertIn(bm, storage.all().values())
-        self.assertIn(bm1, storage.all().values())
+        """Check the instances of BaseModel"""
+        basemodel = BaseModel()
+        basemodel1 = BaseModel()
+        self.assertNotEqual(basemodel.id, basemodel1.id)
+        self.assertNotEqual(basemodel.created_at, basemodel1.created_at)
+        self.assertNotEqual(basemodel.updated_at, basemodel1.updated_at)
+        self.assertIn(basemodel, storage.all().values())
+        self.assertIn(basemodel1, storage.all().values())
 
     def test_attr(self):
-        """checks the types of the attributes"""
-        bm = BaseModel()
-        bm.name = "Holberton"
-        bm.age = 89
-        self.assertIs(datetime, type(bm.updated_at))
-        self.assertIs(datetime, type(bm.created_at))
-        self.assertIs(str, type(bm.id))
-        self.assertEqual(int, type(bm.age))
-        self.assertIn(bm.name, bm.to_dict().values())
+        """Checks Attributes"""
+        basemodel = BaseModel()
+        basemodel.name = "Holberton"
+        basemodel.age = 89
+        self.assertIs(datetime, type(basemodel.updated_at))
+        self.assertIs(datetime, type(basemodel.created_at))
+        self.assertIs(str, type(basemodel.id))
+        self.assertEqual(int, type(basemodel.age))
+        self.assertIn(basemodel.name, basemodel.to_dict().values())
 
     def test__str__(self):
-        """ checks the __str__ method """
-        bm = BaseModel()
+        """Checks __str__"""
+        basemodel = BaseModel()
         self.assertEqual(
-            f"[{type(bm).__name__}] ({bm.id}) {bm.__dict__}", str(bm))
+            f"[{type(bm).__name__}] ({bm.id}) {bm.__dict__}", str(basemodel))
 
     def test_save(self):
-        """ checks the save method """
-        bm = BaseModel()
-        updated_at = bm.__dict__['updated_at']
-        bm.save()
-        self.assertNotEqual(bm.__dict__['updated_at'], updated_at)
+        """Checks Save"""
+        basemodel = BaseModel()
+        updated_at = basemodel.__dict__['updated_at']
+        basemodel.save()
+        self.assertNotEqual(basemodel.__dict__['updated_at'], updated_at)
         self.assertTrue(os.path.isfile('file.json'))
-        new_updated_at = bm.__dict__['updated_at']
+        new_updated_at = basemodel.__dict__['updated_at']
         storage.reload()
-        self.assertEqual(bm.__dict__['updated_at'], new_updated_at)
-        bm1 = BaseModel()
-        updated_at = bm1.__dict__['updated_at']
-        bm1.save()
-        self.assertNotEqual(bm1.__dict__['updated_at'], updated_at)
+        self.assertEqual(basemodel.__dict__['updated_at'], new_updated_at)
+        basemodel1 = BaseModel()
+        updated_at = basemodel1.__dict__['updated_at']
+        basemodel1.save()
+        self.assertNotEqual(basemodel1.__dict__['updated_at'], updated_at)
         self.assertTrue(os.path.isfile('file.json'))
-        new_updated_at = bm1.__dict__['updated_at']
+        new_updated_at = basemodel1.__dict__['updated_at']
         storage.reload()
-        self.assertEqual(bm1.__dict__['updated_at'], new_updated_at)
+        self.assertEqual(basemodel1.__dict__['updated_at'], new_updated_at)
 
     def test_to_dict(self):
-        """ checkss to_dict method """
-        bm = BaseModel()
-        bm_dict = bm.to_dict()
-        self.assertEqual(bm_dict["id"], bm.id)
-        self.assertEqual(bm_dict["created_at"], bm.created_at.isoformat())
-        self.assertEqual(bm_dict["updated_at"], bm.updated_at.isoformat())
-        self.assertEqual(bm_dict['__class__'], bm.__class__.__name__)
+        """Checks to_dict"""
+        basemodel = BaseModel()
+        basemodel_dict = basemodel.to_dict()
+        self.assertEqual(basemodel_dict["id"], basemodel.id)
+        self.assertEqual(basemodel_dict["created_at"], basemodel.created_at.isoformat())
+        self.assertEqual(basemodel_dict["updated_at"], basemodel.updated_at.isoformat())
+        self.assertEqual(basemodel_dict['__class__'], basemodel.__class__.__name__)
 
     def test_save(self):
-        """ checks the save method """
-        bm = BaseModel()
-        fs = FileStorage()
-        update = bm.__dict__['updated_at']
-        bm.save()
+        """Checks Save"""
+        basemodel = BaseModel()
+        filestorage1 = FileStorage()
+        update = basemodel.__dict__['updated_at']
+        basemodel.save()
         self.assertTrue(os.path.isfile('file.json'))
-        self.assertNotEqual(bm.__dict__['updated_at'], update)
-        update = bm.__dict__['updated_at']
-        fs.reload()
-        self.assertEqual(bm.__dict__['updated_at'], update)
+        self.assertNotEqual(basemodel.__dict__['updated_at'], update)
+        update = basemodel.__dict__['updated_at']
+        filestorage1.reload()
+        self.assertEqual(basemodel.__dict__['updated_at'], update)
 
     def test_reload(self):
-        """ checks the reload method """
-        bm = BaseModel()
-        bm.save()
+        """Checks Reload"""
+        basemodel = BaseModel()
+        basemodel.save()
         storage.reload()
         self.assertTrue(os.path.isfile('file.json'))
-        key = f"{bm.__class__.__name__}.{bm.id}"
-        self.assertEqual(bm.__dict__['updated_at'],
+        key = f"{basemodel.__class__.__name__}.{basemodel.id}"
+        self.assertEqual(basemodel.__dict__['updated_at'],
                          storage.all()[key].updated_at)
-        bm1 = BaseModel()
-        bm1.save()
+        basemodel1 = BaseModel()
+        basemodel1.save()
         storage.reload()
         self.assertTrue(os.path.isfile('file.json'))
-        key1 = f"{bm1.__class__.__name__}.{bm1.id}"
+        key1 = f"{basemodel1.__class__.__name__}.{basemodel1.id}"
         self.assertEqual(bm1.__dict__['updated_at'],
                          storage.all()[key1].updated_at)
 
