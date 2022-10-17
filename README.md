@@ -53,5 +53,19 @@ $ ./console.py
 
 | Command | Description |
 | ------------- | ------------- |
-| Create  | Create a new instance of BaseModel  |
-| Show  | Prints the string representation of an instance based on the class name and id |
+| Create  | Create a new instance of BaseModel.  |
+| Show  | Prints the string representation of an instance based on the class name and id. |
+| Destroy | Deletes an instance based on the class name and id. |
+| All | Prints all string representation of all instances based or not on the class name. |
+| Update | Updates an instance based on the class name and id by adding or updating attribute. |
+
+To execute those commands you have to type the command and the name of the class.
+
+For example:
+
+$ (hbnb) Create Amenity
+3f19d088-5269-430d-b128-f3efe8bf406f
+
+Authors of the project:
+- Facundo Blanco
+- Ricardo Danta
