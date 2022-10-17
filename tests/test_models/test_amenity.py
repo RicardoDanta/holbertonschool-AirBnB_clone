@@ -26,5 +26,10 @@ class TestAmenity(unittest.TestCase):
         pycodestyle = style.check_files(['models/amenity.py'])
         self.assertEqual(pycodestyle.total_errors, 0, "fix pep8")
 
+    def test_doc(self):
+        """Check docstring"""
+        self.assertIsNotNone(BaseModel.__doc__)
+
+
 if __name__ == '__main__':
     unittest.main()
