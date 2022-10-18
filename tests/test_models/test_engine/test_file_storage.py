@@ -75,10 +75,6 @@ class test_fileStorage(unittest.TestCase):
         self.assertIsNotNone(filestorage.save)
         self.assertIsNotNone(filestorage.reload)
 
-    def test_save_method(self):
-        """Save"""
-        pass
-
 
 if __name__ == '__main__':
     unittest.main()

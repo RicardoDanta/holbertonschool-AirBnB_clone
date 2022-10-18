@@ -30,6 +30,14 @@ class TestAmenity(unittest.TestCase):
         """Check docstring"""
         self.assertIsNotNone(BaseModel.__doc__)
 
+    def test_id(self):
+        """Check the ID"""
+        basemodel = BaseModel()
+        base_model = BaseModel()
+        self.assertIsInstance(basemodel.id, str)
+        self.assertNotEqual(basemodel.id, base_model.id)
+        self.assertFalse(basemodel.id == base_model.id)
+
 
 if __name__ == '__main__':
     unittest.main()
