@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 """Test FileStorage"""
 
+import unittest
 import models
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
-import unittest
 from models import storage
+import doctest
 
 
 class test_fileStorage(unittest.TestCase):
@@ -66,14 +67,10 @@ class test_fileStorage(unittest.TestCase):
         self.assertIsNotNone(
             storage.all()[basemodel.__class__.__name__ + "." + basemodelid])
 
-    def test_docstring(self):
-        """Checking the Docstring"""
-        filestorage = FileStorage()
-        self.assertTrue(filestorage.__doc__)
-        self.assertIsNotNone(filestorage.all)
-        self.assertIsNotNone(filestorage.new)
-        self.assertIsNotNone(filestorage.save)
-        self.assertIsNotNone(filestorage.reload)
+    def test_save_again(self):
+        "Another test of Save"""
+        with self.assertRaises(TypeError):
+            models.storage.save(None)
 
 
 if __name__ == '__main__':
