@@ -4,6 +4,9 @@
 import unittest
 import models
 from models.base_model import BaseModel
+from datetime import datetime
+import os
+from models import storage
 
 
 class TestBaseModel(unittest.TestCase):
@@ -32,6 +35,43 @@ class TestBaseModel(unittest.TestCase):
         """Checks __str__"""
         b = BaseModel()
         self.assertEqual(f"[{type(b).__name__}] ({b.id}) {b.__dict__}", str(b))
+
+    def test_id(self):
+        """Check the ID"""
+        basemodel = BaseModel()
+        base_model = BaseModel()
+        self.assertIsInstance(basemodel.id, str)
+        self.assertNotEqual(basemodel.id, base_model.id)
+        self.assertFalse(basemodel.id == base_model.id)
+
+    def test_doc(self):
+        """Check docstring"""
+        self.assertIsNotNone(BaseModel.__doc__)
+
+    def test_datetime(self):
+        """Check Datetime"""
+        basemodel = BaseModel()
+        self.assertIsInstance(basemodel.created_at, datetime)
+        self.assertIsInstance(basemodel.updated_at, datetime)
+
+    def test_save_method(self):
+        """Check Save"""
+        basemodel = BaseModel()
+        updated_at = basemodel.__dict__["updated_at"]
+        basemodel.save()
+        self.assertNotEqual(basemodel.__dict__["updated_at"], updated_at)
+        self.assertTrue(os.path.isfile("file.json"))
+        new_updated_at = basemodel.__dict__["updated_at"]
+        storage.reload()
+        self.assertEqual(basemodel.__dict__["updated_at"], new_updated_at)
+        basemodel1 = BaseModel()
+        updated_at = basemodel1.__dict__["updated_at"]
+        basemodel1.save()
+        self.assertNotEqual(basemodel1.__dict__["updated_at"], updated_at)
+        self.assertTrue(os.path.isfile("file.json"))
+        new_updated_at = basemodel1.__dict__["updated_at"]
+        storage.reload()
+        self.assertEqual(basemodel1.__dict__["updated_at"], new_updated_at)
 
 
 if __name__ == '__main__':

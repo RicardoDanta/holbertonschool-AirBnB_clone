@@ -4,6 +4,7 @@
 import unittest
 from models.base_model import BaseModel
 from models.amenity import Amenity
+import pep8
 
 
 class TestAmenity(unittest.TestCase):
@@ -18,6 +19,24 @@ class TestAmenity(unittest.TestCase):
         amenity = Amenity()
         self.assertEqual(amenity.name, "")
         self.assertTrue(isinstance(amenity, BaseModel))
+
+    def test_pycodestyle(self):
+        """Check Pycodestyle"""
+        style = pep8.StyleGuide(quit=True)
+        pycodestyle = style.check_files(['models/amenity.py'])
+        self.assertEqual(pycodestyle.total_errors, 0, "fix pep8")
+
+    def test_doc(self):
+        """Check docstring"""
+        self.assertIsNotNone(BaseModel.__doc__)
+
+    def test_id(self):
+        """Check the ID"""
+        basemodel = BaseModel()
+        base_model = BaseModel()
+        self.assertIsInstance(basemodel.id, str)
+        self.assertNotEqual(basemodel.id, base_model.id)
+        self.assertFalse(basemodel.id == base_model.id)
 
 
 if __name__ == '__main__':

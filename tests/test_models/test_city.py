@@ -16,6 +16,11 @@ class TestCity(unittest.TestCase):
         self.assertEqual(city.name, "")
         self.assertEqual(city.state_id, "")
 
+    def test_instances(self):
+        """Check if that instances are correct"""
+        basemodel = BaseModel()
+        self.assertIsInstance(basemodel, BaseModel)
+
 
 if __name__ == '__main__':
     unittest.main()
